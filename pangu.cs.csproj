@@ -6,6 +6,22 @@
 		<PackageId>PanguSpacing</PackageId>
 		<Title>pangu.cs</Title>
 		<Authors>yozora</Authors>
+		<Description>Paranoid text spacing in C#</Description>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/otomad/pangu.cs</RepositoryUrl>
+		<PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
+		<PackageTags>pangu;text-spacing;spacing;text;typesetting;readability;cli;chinese;japanese;korean;obsessive-compulsive-disorder;ocd;paranoia</PackageTags>
+		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+		<FileVersion>$(VersionPrefix)</FileVersion>
+		<VersionPrefix>1.1.0</VersionPrefix>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>
