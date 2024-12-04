@@ -104,7 +104,8 @@ namespace PanguSpacing {
 		public const char PUNCSP = '\u2008';
 
 		/// <remarks>
-		/// <para>By default, a punctuation space (narrow space) character is used instead of THE SPACE character to avoid appearing too wide spacing.</para>
+		/// <para>By default, a punctuation space character (U+2008) is used that is narrower than THE SPACE character (U+0020) itself,
+		/// to avoid making the space look too wide.</para>
 		/// <para>If you don't like it, you can manually restore it to THE SPACE character itself, like this:</para>
 		/// <code>
 		/// Pangu.puncsp = " ";

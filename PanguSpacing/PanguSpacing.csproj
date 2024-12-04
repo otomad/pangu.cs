@@ -1,9 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<VersionPrefix>1.1.1</VersionPrefix>
 		<TargetFramework>netstandard2.0</TargetFramework>
+		<AssemblyName>pangu.cs</AssemblyName>
+		<Title>$(AssemblyName)</Title>
 		<PackageId>PanguSpacing</PackageId>
-		<Title>pangu.cs</Title>
 		<Authors>yozora</Authors>
 		<Description>Paranoid text spacing in C#</Description>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -12,9 +14,7 @@
 		<PackageTags>pangu;text-spacing;spacing;text;typesetting;readability;cli;chinese;japanese;korean;obsessive-compulsive-disorder;ocd;paranoia</PackageTags>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
 		<FileVersion>$(VersionPrefix)</FileVersion>
-		<VersionPrefix>1.1.0</VersionPrefix>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<AssemblyName>pangu.cs</AssemblyName>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
 

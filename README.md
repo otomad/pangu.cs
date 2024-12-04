@@ -3,13 +3,29 @@
 [![](https://img.shields.io/nuget/v/PanguSpacing?logo=nuget&label=NuGet&color=%23004880)](https://www.nuget.org/packages/PanguSpacing)
 [![](https://img.shields.io/nuget/vpre/PanguSpacing?logo=github&label=GitHub&color=%23181717)](https://github.com/otomad/pangu.cs)
 
-Paranoid text spacing for good readability, to automatically insert whitespace between CJK (Chinese, Japanese, Korean), half-width English, digit and symbol characters.
+Paranoid text spacing for good readability, to automatically insert whitespace between CJK (Chinese, Japanese, Korean),
+half-width English, digit and symbol characters.
 
 ## Usage
 
 ```csharp
+using PanguSpacing;
+
 string newText = Pangu.Spacing("當你凝視著bug，bug也凝視著你");
 Console.WriteLine(newText); // "當你凝視著 bug，bug 也凝視著你"
+```
+
+## Configuration
+
+### Punctuation Space
+
+By default, a punctuation space character (U+2008) is used that is narrower than THE SPACE character (U+0020) itself,
+to avoid making the space look too wide.
+
+If you do not like it, you can manually change it back to THE SPACE character itself, like this:
+
+```csharp
+Pangu.puncsp = " ";
 ```
 
 ## Licence
