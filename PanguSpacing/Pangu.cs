@@ -2,7 +2,6 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -133,13 +132,16 @@ namespace PanguSpacing {
 			string newText = text;
 
 			newText = newText.Replace(CONVERT_TO_FULLWIDTH_CJK_SYMBOLS_CJK, match => {
-				(_, string leftCjk, string symbols, string rightCjk, _) = match.Groups.Cast<string>().ToArray();
+				string leftCjk = match.Groups[1].Value,
+					symbols = match.Groups[2].Value,
+					rightCjk = match.Groups[3].Value;
 				string fullwidthSymbols = ConvertToFullwidth(symbols);
 				return $"{leftCjk}{fullwidthSymbols}{rightCjk}";
 			});
 
 			newText = newText.Replace(CONVERT_TO_FULLWIDTH_CJK_SYMBOLS, match => {
-				(_, string cjk, string symbols, _) = match.Groups.Cast<string>().ToArray();
+				string cjk = match.Groups[1].Value,
+					symbols = match.Groups[2].Value;
 				string fullwidthSymbols = ConvertToFullwidth(symbols);
 				return $"{cjk}{fullwidthSymbols}";
 			});

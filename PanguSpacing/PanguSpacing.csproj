@@ -2,7 +2,6 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<RootNamespace>PanguSpacing</RootNamespace>
 		<PackageId>PanguSpacing</PackageId>
 		<Title>pangu.cs</Title>
 		<Authors>yozora</Authors>
@@ -15,10 +14,16 @@
 		<FileVersion>$(VersionPrefix)</FileVersion>
 		<VersionPrefix>1.1.0</VersionPrefix>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<AssemblyName>pangu.cs</AssemblyName>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Update="README.md">
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
