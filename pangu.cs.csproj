@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace>PanguSpacing</RootNamespace>
+		<PackageId>PanguSpacing</PackageId>
+		<Title>pangu.cs</Title>
+		<Authors>yozora</Authors>
+	</PropertyGroup>
+
+</Project>
