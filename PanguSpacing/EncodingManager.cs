@@ -19,7 +19,7 @@ namespace PanguSpacing {
 		/// Analyze and get the encoding type of the byte stream.
 		/// </summary>
 		internal static Encoding GetEncodingType(byte[] fileBytes) {
-			if (IsUTF8WithoutBom(fileBytes))
+			if (IsUtf8WithoutBom(fileBytes))
 				return new UTF8Encoding(); // UTF-8 without BOM
 			else if (fileBytes[0] == 0xEF && fileBytes[1] == 0xBB && fileBytes[2] == 0xBF)
 				return Encoding.UTF8; // UTF-8 with BOM
@@ -37,7 +37,7 @@ namespace PanguSpacing {
 		/// Check if it is UTF-8 without BOM encoding?
 		/// </summary>
 		/// <exception cref="FormatException">Unexpected byte format!</exception>
-		private static bool IsUTF8WithoutBom(byte[] fileBytes) {
+		private static bool IsUtf8WithoutBom(byte[] fileBytes) {
 			int charByteCounter = 1; // Calculate the remaining number of bytes for the character being analyzed
 			byte curByte; // Current analyzing bytes
 			foreach (byte fileByte in fileBytes) {
