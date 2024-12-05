@@ -1,7 +1,10 @@
 # Pangu.cs
 
-[![](https://img.shields.io/nuget/v/PanguSpacing?logo=nuget&label=NuGet&color=%23004880)](https://www.nuget.org/packages/PanguSpacing)
-[![](https://img.shields.io/nuget/vpre/PanguSpacing?logo=github&label=GitHub&color=%23181717)](https://github.com/otomad/pangu.cs)
+[![NuGet](https://img.shields.io/nuget/v/PanguSpacing?logo=nuget&label=NuGet&color=%23004880)](https://www.nuget.org/packages/PanguSpacing)
+[![GitHub](https://img.shields.io/nuget/vpre/PanguSpacing?logo=github&label=GitHub&color=%23181717)](https://github.com/otomad/pangu.cs)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)][license-url]
+
+[license-url]: http://opensource.org/licenses/MIT
 
 Paranoid text spacing for good readability, to automatically insert whitespace between CJK (Chinese, Japanese, Korean),
 half-width English, digit and symbol characters.
@@ -30,9 +33,7 @@ Pangu.puncsp = " ";
 
 ## Licence
 
-pangu.cs is available under the [MIT License][mitLink]. See the LICENSE file for more info.
-
-[mitLink]:http://opensource.org/licenses/MIT
+pangu.cs is available under the [MIT License][license-url]. See the LICENSE file for more info.
 
 ## References
 - [pangu.js](https://github.com/vinta/pangu.js) (JavaScript)
