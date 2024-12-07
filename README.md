@@ -31,7 +31,7 @@ If you do not like it, you can manually change it back to THE SPACE character it
 Pangu.puncsp = " ";
 ```
 
-## Licence
+## License
 
 pangu.cs is available under the [MIT License][license-url]. See the LICENSE file for more info.
 
