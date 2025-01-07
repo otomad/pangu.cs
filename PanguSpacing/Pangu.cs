@@ -40,7 +40,11 @@ namespace PanguSpacing {
 		///
 		/// <para>all J below does not include <c>\u30fb</c></para>
 		/// </remarks>
-		private static readonly string CJK = "\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30fa\u30fc-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff";
+		private static readonly string CJK = @"\p{IsCJKRadicalsSupplement}\p{IsKangxiRadicals}々-〇〡-〩〸-〺\p{IsHiragana}ァ-ヺー-ヿ\p{IsBopomofo}\p{IsKanbun}\p{IsBopomofoExtended}㇀-\u31ee\p{IsKatakanaPhoneticExtensions}\p{IsEnclosedCJKLettersandMonths}\p{IsCJKCompatibility}\p{IsCJKUnifiedIdeographsExtensionA}\p{IsCJKUnifiedIdeographs}\p{IsCJKCompatibilityIdeographs}";
+		// Old: "\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30fa\u30fc-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff";
+		// .NET Regex missing Unicode Block "IsCJKStrokes", this is because this block was released in Unicode 4.1, but .NET supports blocks based on Unicode 4.0.
+
+		private static readonly string MathOperators = @"\p{IsMathematicalOperators}\p{IsMiscellaneousMathematicalSymbols-A}\p{IsMiscellaneousMathematicalSymbols-B}\p{IsSupplementalMathematicalOperators}";
 
 		private static readonly Regex
 			// ANS is short for Alphabets, Numbers, and Symbols.
@@ -55,13 +59,13 @@ namespace PanguSpacing {
 			// the symbol part only includes ~ ! ; : , . ? but . only matches one character
 			CONVERT_TO_FULLWIDTH_CJK_SYMBOLS_CJK = new Regex($@"([{CJK}])[ ]*([\:]+|\.)[ ]*([{CJK}])"),
 			CONVERT_TO_FULLWIDTH_CJK_SYMBOLS = new Regex($@"([{CJK}])[ ]*([~\!;,\?]+)[ ]*"),
-			DOTS_CJK = new Regex($@"([\.]{{2,}}|\u2026)([{CJK}])"),
+			DOTS_CJK = new Regex($@"([\.]{{2,}}|…)([{CJK}])"),
 			FIX_CJK_COLON_ANS = new Regex($@"([{CJK}])\:([A-Z0-9\(\)])"),
 
 			// the symbol part does not include '
-			CJK_QUOTE = new Regex($@"([{CJK}])([`""\u05f4])"),
-			QUOTE_CJK = new Regex($@"([`""\u05f4])([{CJK}])"),
-			FIX_QUOTE_ANY_QUOTE = new Regex($@"([`""\u05f4]+)[ ]* (.+?)[ ]* ([`""\u05f4]+)"),
+			CJK_QUOTE = new Regex($@"([{CJK}])([`""״])"),
+			QUOTE_CJK = new Regex($@"([`""״])([{CJK}])"),
+			FIX_QUOTE_ANY_QUOTE = new Regex($@"([`""״]+)[ ]* (.+?)[ ]* ([`""״]+)"),
 
 			CJK_SINGLE_QUOTE_BUT_POSSESSIVE = new Regex($@"([{CJK}])('[^s])"),
 			SINGLE_QUOTE_CJK = new Regex($@"(')([{CJK}])"),
@@ -72,28 +76,28 @@ namespace PanguSpacing {
 			HASH_CJK = new Regex($@"(([^ ])#)([{CJK}])"),
 
 			// the symbol part only includes + - * / = & | < >
-			CJK_OPERATOR_ANS = new Regex($@"([{CJK}])([\+\-\*\/=&\|<>])([A-Za-z0-9])"),
-			ANS_OPERATOR_CJK = new Regex($@"([A-Za-z0-9])([\+\-\*\/=&\|<>])([{CJK}])"),
+			CJK_OPERATOR_ANS = new Regex($@"([{CJK}])([\+\-\*\/=&\|<>{MathOperators}])([A-Za-z0-9])"),
+			ANS_OPERATOR_CJK = new Regex($@"([A-Za-z0-9])([\+\-\*\/=&\|<>{MathOperators}])([{CJK}])"),
 
 			FIX_SLASH_AS = new Regex(@"([/]) ([a-z\-_\./]+)"),
 			FIX_SLASH_AS_SLASH = new Regex(@"([/\.])([A-Za-z\-_\./]+) ([/])"),
 
 			// the bracket part only includes ( ) [ ] { } < > “ ”
-			CJK_LEFT_BRACKET = new Regex($@"([{CJK}])([\(\[\{{<>\u201c])"),
-			RIGHT_BRACKET_CJK = new Regex($@"([\)\]\}}<>\u201d])([{CJK}])"),
-			FIX_LEFT_BRACKET_ANY_RIGHT_BRACKET = new Regex(@"([\(\[\{<\u201c]+)[ ]*(.+?)[ ]*([\)\]\}>\u201d]+)"),
-			ANS_CJK_LEFT_BRACKET_ANY_RIGHT_BRACKET = new Regex($@"([A-Za-z0-9{CJK}])[ ]*([\u201c])([A-Za-z0-9{CJK}\-_ ]+)([\u201d])"),
-			LEFT_BRACKET_ANY_RIGHT_BRACKET_ANS_CJK = new Regex($@"([\u201c])([A-Za-z0-9{CJK}\-_ ]+)([\u201d])[ ]*([A-Za-z0-9{CJK}])"),
+			CJK_LEFT_BRACKET = new Regex($@"([{CJK}])([\(\[\{{<>“])"),
+			RIGHT_BRACKET_CJK = new Regex($@"([\)\]\}}<>”])([{CJK}])"),
+			FIX_LEFT_BRACKET_ANY_RIGHT_BRACKET = new Regex(@"([\(\[\{<“]+)[ ]*(.+?)[ ]*([\)\]\}>”]+)"),
+			ANS_CJK_LEFT_BRACKET_ANY_RIGHT_BRACKET = new Regex($@"([A-Za-z0-9{CJK}])[ ]*([“])([A-Za-z0-9{CJK}\-_ ]+)([”])"),
+			LEFT_BRACKET_ANY_RIGHT_BRACKET_ANS_CJK = new Regex($@"([“])([A-Za-z0-9{CJK}\-_ ]+)([”])[ ]*([A-Za-z0-9{CJK}])"),
 
 			AN_LEFT_BRACKET = new Regex(@"([A-Za-z0-9])([\(\[\{])"),
 			RIGHT_BRACKET_AN = new Regex(@"([\)\]\}])([A-Za-z0-9])"),
 
-			CJK_ANS = new Regex($@"([{CJK}])([A-Za-z\u0370-\u03ff0-9@\$%\^&\*\-\+\\=\|/\u00a1-\u00ff\u2150-\u218f\u2700—\u27bf])"),
-			ANS_CJK = new Regex($@"([A-Za-z\u0370-\u03ff0-9~\$%\^&\*\-\+\\=\|/!;:,\.\?\u00a1-\u00ff\u2150-\u218f\u2700—\u27bf])([{CJK}])"),
+			CJK_ANS = new Regex($@"([{CJK}])([A-Za-zͰ-Ͽ0-9@\$%\^&\*\-\+\\=\|/¡-ÿ⅐-\u218f✀—➿{MathOperators}])"),
+			ANS_CJK = new Regex($@"([A-Za-zͰ-Ͽ0-9~\$%\^&\*\-\+\\=\|/!;:,\.\?¡-ÿ⅐-\u218f✀—➿{MathOperators}])([{CJK}])"),
 
 			S_A = new Regex(@"(%)([A-Za-z])"),
 
-			MIDDLE_DOT = new Regex(@"([ ]*)([\u00b7\u2022\u2027])([ ]*)");
+			MIDDLE_DOT = new Regex(@"([ ]*)([·•‧])([ ]*)");
 
 		/// <summary>
 		/// Unicode <b>Punctuation Space</b>

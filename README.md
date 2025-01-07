@@ -31,6 +31,12 @@ If you do not like it, you can manually change it back to THE SPACE character it
 Pangu.puncsp = " ";
 ```
 
+### Update Logs
+
+#### 1.1.5
+
+- Supports Mathematical Operators related Unicode blocks.
+
 ## License
 
 pangu.cs is available under the [MIT License][license-url]. See the LICENSE file for more info.
