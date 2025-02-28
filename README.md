@@ -33,6 +33,11 @@ Pangu.puncsp = " ";
 
 ### Update Logs
 
+#### 1.1.6
+
+- Supports fullwidth quotation marks (Unicode standard variation sequences).
+- Exclude midline horizontal ellipsis from mathematical operators.
+
 #### 1.1.5
 
 - Supports Mathematical Operators related Unicode blocks.
